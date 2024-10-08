@@ -11,24 +11,17 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(guess.toUpperCase());
-    setGuess("");
-    setGuesses([...guesses, guess.toUpperCase()]);
+  function handleSubmitGuess(tentativeGuess) {
+    console.log(tentativeGuess);
+    setGuesses([...guesses, tentativeGuess]);
   }
 
   return (
     <>
       <GuessResults guesses={guesses} />
-      <GuessInput
-        guess={guess}
-        setGuess={setGuess}
-        handleSubmit={handleSubmit}
-      />
+      <GuessInput onSubmit={handleSubmitGuess} />
     </>
   );
 }
